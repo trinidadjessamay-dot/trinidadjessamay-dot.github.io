@@ -79,7 +79,7 @@ nav {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
 }
  .nav-menu {
@@ -101,5 +101,6 @@ nav {
  .nav-link:hover{
     color: #666;
  }
+
 
 
