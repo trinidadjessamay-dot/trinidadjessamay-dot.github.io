@@ -8,12 +8,12 @@
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-color: beige;
+  background-color: gray;
   margin: 0;
 }
 
 nav {
-  background-color: beige;
+  background-color: gray;
   padding: 10px 0;
 }
 
@@ -37,7 +37,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: beige;
+  background-color: gray;
   border-radius: 4px;
 }
 
@@ -45,7 +45,7 @@ nav ul li a:hover {
 .content {
   text-align: center;
   padding: 50px;
-  background-color: beige;
+  background-color: gray;
   margin-top: 20px;
 }
 
