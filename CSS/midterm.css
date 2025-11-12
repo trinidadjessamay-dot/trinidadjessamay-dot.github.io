@@ -68,3 +68,38 @@ footer {
     color: black;
     margin-top: 50px;
 }
+
+nav {
+    background-color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+ }
+
+ .nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+
+ }
+
+ .nav-link:hover{
+    color: #666;
+ }
+
+
