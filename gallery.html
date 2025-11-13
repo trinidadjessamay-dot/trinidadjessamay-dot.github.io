@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Jessa May Trinidad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        #urvid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.7);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">My Website</h1>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden flex flex-col gap-1 p-2" onclick="toggleMenu()" aria-label="Toggle navigation">
+                <span class="w-6 h-0.5 bg-gray-900 rounded transition-all"></span>
+                <span class="w-6 h-0.5 bg-gray-900 rounded transition-all"></span>
+                <span class="w-6 h-0.5 bg-gray-900 rounded transition-all"></span>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex gap-2 items-center">
+                    <li><a href="index.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Home</a></li>
+                    <li><a href="gallery.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Gallery</a></li>
+                    <li><a href="portfolio.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Portfolio</a></li>
+                    <li><a href="about.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">About</a></li>
+                    <li><a href="contact.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Navigation -->
+            <nav id="mobileMenu" class="fixed left-0 top-[70px] w-full bg-white shadow-lg border-t border-gray-200 py-8 -translate-x-full md:hidden transition-transform duration-300 ease-in-out">
+                <ul class="flex flex-col text-center">
+                    <li class="py-3"><a href="index.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Home</a></li>
+                    <li class="py-3"><a href="gallery.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Gallery</a></li>
+                    <li class="py-3"><a href="portfolio.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Portfolio</a></li>
+                    <li class="py-3"><a href="about.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">About</a></li>
+                    <li class="py-3"><a href="contact.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Background video -->
+    <video autoplay muted loop id="urvid">
+        <source src="img/1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Gallery Section -->
+    <section class="relative min-h-screen py-12 px-4 md:px-8 flex items-center justify-center">
+        <div class="w-full max-w-7xl bg-white/95 backdrop-blur-lg rounded-3xl p-6 md:p-12 shadow-2xl">
+            <!-- Gallery Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">My Gallery</h1>
+                <p class="text-lg text-gray-600 mb-6">A collection of my favorite moments and memories</p>
+                <button id="pause_button" onclick="toggleVideo()" class="px-8 py-3.5 bg-gradient-to-r from-[#8fb887] to-[#c5cf88] text-white rounded-full font-semibold text-base shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                    Pause Video
+                </button>
+            </div>
+
+            <!-- Image Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
+                <!-- Image Card 1 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/1.jpg" alt="Gallery Image 1" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 1</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 2 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/2.jpg" alt="Gallery Image 2" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 2</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 3 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/3.jpg" alt="Gallery Image 3" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 3</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 4 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/4.jpg" alt="Gallery Image 4" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 4</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 5 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/5.jpg" alt="Gallery Image 5" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 5</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 6 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/6.jpg" alt="Gallery Image 6" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 6</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 7 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/7.jpg" alt="Gallery Image 7" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 7</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 8 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/8.jpg" alt="Gallery Image 8" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 8</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 9 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/9.jpg" alt="Gallery Image 9" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 9</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 10 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/10.jpg" alt="Gallery Image 10" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 10</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 11 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/11.jpg" alt="Gallery Image 11" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 11</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 12 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/12.jpg" alt="Gallery Image 12" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 12</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 13 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/13.jpg" alt="Gallery Image 13" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 13</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 14 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/14.jpg" alt="Gallery Image 14" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 14</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 15 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/15.jpg" alt="Gallery Image 15" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 15</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 16 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/16.jpg" alt="Gallery Image 16" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 16</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 17 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/17.jpg" alt="Gallery Image 17" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 17</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 18 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/18.jpg" alt="Gallery Image 18" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 18</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 19 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/19.jpg" alt="Gallery Image 19" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 19</p>
+                    </div>
+                </div>
+
+                <!-- Image Card 20 -->
+                <div class="group relative overflow-hidden rounded-xl shadow-md hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 bg-gray-100">
+                    <img src="img/20.jpg" alt="Gallery Image 20" class="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-300">
+                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <p class="text-white font-medium text-sm">Photo 20</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/95 text-gray-600 py-12 border-t border-gray-200 relative z-10">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Contact Info</h3>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                            <a href="mailto:trinidadjessamay@gmail.com" class="hover:text-[#8fb887] transition-colors">trinidadjessamay@gmail.com</a>
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <a href="tel:09618519872" class="hover:text-[#8fb887] transition-colors">09618519872</a>
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>Villa Mercedes, San Quintin, Abra</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-[#8fb887] transition-colors">Home</a></li>
+                        <li><a href="gallery.html" class="hover:text-[#8fb887] transition-colors">Gallery</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#8fb887] transition-colors">Portfolio</a></li>
+                        <li><a href="about.html" class="hover:text-[#8fb887] transition-colors">About</a></li>
+                        <li><a href="contact.html" class="hover:text-[#8fb887] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Connect With Me</h3>
+                    <div class="flex gap-4">
+                        <a href="https://trinidadjessamay-dot.github.io" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#8fb887] hover:text-white transition-all duration-300" aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                        <a href="https://instagram.com/1ts_jesiah" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#8fb887] hover:text-white transition-all duration-300" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://www.facebook.com/jessamay.callostrinidad.7" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#8fb887] hover:text-white transition-all duration-300" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center pt-8 border-t border-gray-200">
+                <p class="text-sm">© 2025 Jessa May Trinidad | Built with ❤️ on GitHub Pages</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleVideo() {
+            let video = document.getElementById("urvid");
+            let btn = document.getElementById("pause_button");
+
+            if (video.paused) {
+                video.play();
+                btn.innerText = "Pause Video";
+            } else {
+                video.pause();
+                btn.innerText = "Play Video";
+            }
+        }
+
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('-translate-x-full');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = event.target.closest('button[aria-label="Toggle navigation"]');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton && !mobileMenu.classList.contains('-translate-x-full')) {
+                mobileMenu.classList.add('-translate-x-full');
+            }
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('-translate-x-full');
+            });
+        });
+    </script>
+</body>
+</html>

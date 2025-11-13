@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Jessa May Trinidad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease;
+        }
+        .hero-pattern {
+            background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-8 py-5">
+            <h1 class="text-2xl font-bold text-gray-900 tracking-tight">My Website</h1>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden flex flex-col gap-1 p-2" onclick="toggleMenu()" aria-label="Toggle navigation">
+                <span class="w-6 h-0.5 bg-gray-900 rounded transition-all"></span>
+                <span class="w-6 h-0.5 bg-gray-900 rounded transition-all"></span>
+                <span class="w-6 h-0.5 bg-gray-900 rounded transition-all"></span>
+            </button>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex gap-2 items-center">
+                    <li><a href="index.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Home</a></li>
+                    <li><a href="gallery.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Gallery</a></li>
+                    <li><a href="portfolio.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Portfolio</a></li>
+                    <li><a href="about.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">About</a></li>
+                    <li><a href="contact.html" class="text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-5 py-2.5 rounded-md font-medium text-sm transition-all">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Mobile Navigation -->
+            <nav id="mobileMenu" class="fixed left-0 top-[70px] w-full bg-white shadow-lg border-t border-gray-200 py-8 -translate-x-full md:hidden transition-transform duration-300 ease-in-out">
+                <ul class="flex flex-col text-center">
+                    <li class="py-3"><a href="index.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Home</a></li>
+                    <li class="py-3"><a href="gallery.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Gallery</a></li>
+                    <li class="py-3"><a href="portfolio.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Portfolio</a></li>
+                    <li class="py-3"><a href="about.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">About</a></li>
+                    <li class="py-3"><a href="contact.html" class="text-gray-600 hover:text-gray-900 text-lg font-medium px-5 py-2.5 rounded-md hover:bg-gray-50 inline-block w-11/12 mx-auto transition-all">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section class="relative bg-gradient-to-br from-[#8fb887] to-[#c5cf88] py-16 md:py-20 text-center overflow-hidden">
+        <div class="absolute inset-0 hero-pattern opacity-30"></div>
+        <div class="max-w-7xl mx-auto px-8 relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight drop-shadow-lg">Jessa May Trinidad</h2>
+            <img src="img/5.jpg" alt="Jessa May Trinidad" class="w-40 h-40 md:w-52 md:h-52 rounded-full object-cover border-4 md:border-6 border-white shadow-2xl mx-auto hover:scale-105 transition-transform duration-300">
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto px-4 md:px-8 -mt-8 mb-12 relative z-10">
+        <!-- About Me Section -->
+        <div class="bg-white rounded-xl p-6 md:p-12 mb-8 shadow-sm border border-gray-200 animate-fade-in-up">
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-900 mb-4 pb-3 border-b-2 border-[#8fb887]">About Me</h2>
+            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-4">Hello! I'm Jessa May Trinidad, a passionate Bachelor of Science in Information Technology student with a keen interest in Web Designing. I love learning new technologies and creating meaningful projects that make a difference.</p>
+            <p class="text-gray-600 text-base md:text-lg leading-relaxed mb-8">My journey in web development has been driven by curiosity and a desire to create beautiful, functional digital experiences. I believe in the power of clean code and intuitive design to solve real-world problems.</p>
+            
+            <!-- Stats -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+                <div class="bg-gradient-to-br from-[#8fb887] to-[#c5cf88] p-6 md:p-8 rounded-xl text-center text-white shadow-lg">
+                    <div class="text-4xl md:text-5xl font-bold mb-2 drop-shadow-md">3+</div>
+                    <div class="text-sm opacity-95">Years of Study</div>
+                </div>
+                <div class="bg-gradient-to-br from-[#8fb887] to-[#c5cf88] p-6 md:p-8 rounded-xl text-center text-white shadow-lg">
+                    <div class="text-4xl md:text-5xl font-bold mb-2 drop-shadow-md">10+</div>
+                    <div class="text-sm opacity-95">Projects</div>
+                </div>
+                <div class="bg-gradient-to-br from-[#8fb887] to-[#c5cf88] p-6 md:p-8 rounded-xl text-center text-white shadow-lg">
+                    <div class="text-4xl md:text-5xl font-bold mb-2 drop-shadow-md">5+</div>
+                    <div class="text-sm opacity-95">Technologies</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interests Section -->
+        <div class="bg-white rounded-xl p-6 md:p-12 mb-8 shadow-sm border border-gray-200 animate-fade-in-up">
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 pb-3 border-b-2 border-[#8fb887]">What I Love</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg text-center border-l-4 border-[#8fb887] hover:-translate-y-2 hover:shadow-lg transition-all duration-300">
+                    <div class="text-5xl mb-3">💻</div>
+                    <h3 class="text-gray-900 text-lg font-semibold mb-2">Web Development</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Building responsive websites with modern technologies</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg text-center border-l-4 border-[#8fb887] hover:-translate-y-2 hover:shadow-lg transition-all duration-300">
+                    <div class="text-5xl mb-3">🎨</div>
+                    <h3 class="text-gray-900 text-lg font-semibold mb-2">UI/UX Design</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Creating beautiful and intuitive user interfaces</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg text-center border-l-4 border-[#8fb887] hover:-translate-y-2 hover:shadow-lg transition-all duration-300">
+                    <div class="text-5xl mb-3">📚</div>
+                    <h3 class="text-gray-900 text-lg font-semibold mb-2">Learning</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Constantly exploring new technologies and trends</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg text-center border-l-4 border-[#8fb887] hover:-translate-y-2 hover:shadow-lg transition-all duration-300">
+                    <div class="text-5xl mb-3">🚀</div>
+                    <h3 class="text-gray-900 text-lg font-semibold mb-2">Innovation</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">Pushing boundaries with creative solutions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Timeline -->
+        <div class="bg-white rounded-xl p-6 md:p-12 shadow-sm border border-gray-200 animate-fade-in-up">
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 pb-3 border-b-2 border-[#8fb887]">Education Journey</h2>
+            <div class="relative pl-8 md:pl-10">
+                <!-- Timeline Line -->
+                <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-[#8fb887]"></div>
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative pb-8 md:pb-10">
+                    <div class="absolute left-[-1.3rem] md:left-[-1.45rem] top-0 w-3 h-3 rounded-full bg-[#8fb887] border-4 border-white shadow-sm"></div>
+                    <div class="bg-gray-50 p-4 md:p-6 rounded-lg border-l-4 border-[#8fb887]">
+                        <h3 class="text-gray-900 text-lg md:text-xl font-semibold mb-2">Bachelor of Science in Information Technology</h3>
+                        <p class="text-gray-500 text-sm italic mb-3">2021 - Present</p>
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed">Currently pursuing my degree with a focus on web development, programming, and software engineering principles. Actively engaged in various projects and continuously expanding my technical skill set.</p>
+                    </div>
+                </div>
+                
+                <!-- Timeline Item 2 -->
+                <div class="relative">
+                    <div class="absolute left-[-1.3rem] md:left-[-1.45rem] top-0 w-3 h-3 rounded-full bg-[#8fb887] border-4 border-white shadow-sm"></div>
+                    <div class="bg-gray-50 p-4 md:p-6 rounded-lg border-l-4 border-[#8fb887]">
+                        <h3 class="text-gray-900 text-lg md:text-xl font-semibold mb-2">Web Development Specialization</h3>
+                        <p class="text-gray-500 text-sm italic mb-3">2023 - Present</p>
+                        <p class="text-gray-600 text-sm md:text-base leading-relaxed">Deepening my expertise in front-end and back-end technologies, with emphasis on responsive design and user experience optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white text-gray-600 py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Contact Info</h3>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                            <a href="mailto:trinidadjessamay@gmail.com" class="hover:text-[#8fb887] transition-colors">trinidadjessamay@gmail.com</a>
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <a href="tel:09618519872" class="hover:text-[#8fb887] transition-colors">09618519872</a>
+                        </p>
+                        <p class="flex items-start gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>Villa Mercedes, San Quintin, Abra</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html" class="hover:text-[#8fb887] transition-colors">Home</a></li>
+                        <li><a href="gallery.html" class="hover:text-[#8fb887] transition-colors">Gallery</a></li>
+                        <li><a href="portfolio.html" class="hover:text-[#8fb887] transition-colors">Portfolio</a></li>
+                        <li><a href="about.html" class="hover:text-[#8fb887] transition-colors">About</a></li>
+                        <li><a href="contact.html" class="hover:text-[#8fb887] transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h3 class="font-semibold text-gray-900 mb-4">Connect With Me</h3>
+                    <div class="flex gap-4">
+                      <a href="https://trinidadjessamay-dot.github.io" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#8fb887] hover:text-white transition-all duration-300" aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                        <a href="https://instagram.com/1ts_jesiah" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#8fb887] hover:text-white transition-all duration-300" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://www.facebook.com/jessamay.callostrinidad.7" target="_blank" rel="noopener noreferrer" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#8fb887] hover:text-white transition-all duration-300" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center pt-8 border-t border-gray-200">
+                <p class="text-sm">© 2025 Jessa May Trinidad | Built with ❤️ on GitHub Pages</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('-translate-x-full');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuButton = event.target.closest('button[aria-label="Toggle navigation"]');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton && !mobileMenu.classList.contains('-translate-x-full')) {
+                mobileMenu.classList.add('-translate-x-full');
+            }
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.add('-translate-x-full');
+            });
+        });
+    </script>
+</body>
+</html>
