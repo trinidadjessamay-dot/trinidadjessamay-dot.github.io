@@ -80,7 +80,7 @@ nav {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
 }
  .nav-menu {
     display: flex;
@@ -101,6 +101,7 @@ nav {
  .nav-link:hover{
     color: #666;
  }
+
 
 
 
