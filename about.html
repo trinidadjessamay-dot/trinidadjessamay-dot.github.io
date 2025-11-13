@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Jessa May Trinidad</title>
+    <link rel="stylesheet" href="CSS/midterm.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            background: #f5f7fa;
+            margin: 0;
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+
+        /* Header Styling */
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #4a5568;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #1a202c;
+            background-color: #f7fafc;
+        }
+
+        /* Mobile Menu Toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: #1a202c;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background: linear-gradient(135deg, #8fb887 0%, #c5cf88 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .profile-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-section img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-section img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Content Container */
+        .main-container {
+            max-width: 900px;
+            margin: -2rem auto 3rem;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* About Section */
+        .about-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e1e8ed;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-card h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #8fb887;
+            letter-spacing: -0.5px;
+        }
+
+        .about-card p {
+            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Interests Section */
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .interest-item {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 3px solid #8fb887;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .interest-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .interest-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .interest-item h3 {
+            color: #1a202c;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .interest-item p {
+            color: #4a5568;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #8fb887 0%, #c5cf88 100%);
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 16px rgba(143, 184, 135, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* Education Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin-top: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8fb887;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #8fb887;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 3px #f7fafc;
+        }
+
+        .timeline-content {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid #8fb887;
+        }
+
+        .timeline-content h3 {
+            color: #1a202c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: #718096;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content p {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background-color: #ffffff;
+            color: #718096;
+            border-top: 1px solid #e1e8ed;
+            margin-top: 0;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header .container {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.25rem;
+            }
+
+            .nav-toggle {
+                display: flex;
+                order: 3;
+            }
+
+            nav {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: #fff;
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                padding: 2rem 0;
+                gap: 0;
+                border-top: 1px solid #e1e8ed;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav a {
+                padding: 1rem;
+                width: 90%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .profile-section {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .profile-section h2 {
+                font-size: 2rem;
+            }
+
+            .profile-section img {
+                width: 160px;
+                height: 160px;
+            }
+
+            .main-container {
+                padding: 0 1rem;
+            }
+
+            .about-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .interests-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 class="logo">My Website</h1>
+            <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="trinidad_resume.html">Resume</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile-section">
+        <div class="profile-content">
+            <h2>Jessa May Trinidad</h2>
+            <img src="img/5.jpg" alt="Jessa May Trinidad">
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- About Me Section -->
+        <div class="about-card">
+            <h2>About Me</h2>
+            <p>Hello! I'm Jessa May Trinidad, a passionate Bachelor of Science in Information Technology student with a keen interest in Web Designing. I love learning new technologies and creating meaningful projects that make a difference.</p>
+            <p>My journey in web development has been driven by curiosity and a desire to create beautiful, functional digital experiences. I believe in the power of clean code and intuitive design to solve real-world problems.</p>
+            
+            <!-- Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Years of Study</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Projects</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5+</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interests Section -->
+        <div class="about-card">
+            <h2>What I Love</h2>
+            <div class="interests-grid">
+                <div class="interest-item">
+                    <div class="interest-icon">💻</div>
+                    <h3>Web Development</h3>
+                    <p>Building responsive websites with modern technologies</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>Creating beautiful and intuitive user interfaces</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">📚</div>
+                    <h3>Learning</h3>
+                    <p>Constantly exploring new technologies and trends</p>
+                </div>
+                <div class="interest-item">
+                    <div class="interest-icon">🚀</div>
+                    <h3>Innovation</h3>
+                    <p>Pushing boundaries with creative solutions</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Timeline -->
+        <div class="about-card">
+            <h2>Education Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bachelor of Science in Information Technology</h3>
+                        <p class="timeline-date">2021 - Present</p>
+                        <p>Currently pursuing my degree with a focus on web development, programming, and software engineering principles. Actively engaged in various projects and continuously expanding my technical skill set.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Web Development Specialization</h3>
+                        <p class="timeline-date">2023 - Present</p>
+                        <p>Deepening my expertise in front-end and back-end technologies, with emphasis on responsive design and user experience optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Jessa May Trinidad | Built with ❤️ on GitHub Pages</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const navToggle = document.querySelector('.nav-toggle');
+            
+            if (navMenu && navToggle && !navMenu.contains(event.target) && !navToggle.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMenu = document.getElementById('navMenu');
+                if (navMenu) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
