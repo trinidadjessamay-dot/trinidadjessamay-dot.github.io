@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Station Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .pump-active {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="text-4xl">⛽</div>
+                    <div>
+                        <h1 class="text-2xl font-bold">FuelHub Station</h1>
+                        <p class="text-sm text-blue-200">Management System</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-blue-200">Today's Date</p>
+                    <p class="font-semibold" id="currentDate"></p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="bg-white shadow-md border-b">
+        <div class="container mx-auto px-4">
+            <div class="flex gap-2 overflow-x-auto">
+                <button onclick="showTab('dashboard')" class="tab-btn px-6 py-3 font-medium text-blue-600 border-b-2 border-blue-600">
+                    📊 Dashboard
+                </button>
+                <button onclick="showTab('sales')" class="tab-btn px-6 py-3 font-medium text-gray-600 hover:text-blue-600">
+                    💰 New Sale
+                </button>
+                <button onclick="showTab('inventory')" class="tab-btn px-6 py-3 font-medium text-gray-600 hover:text-blue-600">
+                    🛢️ Inventory
+                </button>
+                <button onclick="showTab('pumps')" class="tab-btn px-6 py-3 font-medium text-gray-600 hover:text-blue-600">
+                    ⚙️ Pumps
+                </button>
+                <button onclick="showTab('reports')" class="tab-btn px-6 py-3 font-medium text-gray-600 hover:text-blue-600">
+                    📈 Reports
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-6">
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Today's Sales</p>
+                            <p class="text-2xl font-bold text-gray-800">₱<span id="todaySales">0</span></p>
+                        </div>
+                        <div class="text-4xl">💵</div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Transactions</p>
+                            <p class="text-2xl font-bold text-gray-800"><span id="todayTransactions">0</span></p>
+                        </div>
+                        <div class="text-4xl">🧾</div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Active Pumps</p>
+                            <p class="text-2xl font-bold text-gray-800"><span id="activePumps">4</span>/4</p>
+                        </div>
+                        <div class="text-4xl">⛽</div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 text-sm">Low Stock Items</p>
+                            <p class="text-2xl font-bold text-red-600"><span id="lowStockCount">0</span></p>
+                        </div>
+                        <div class="text-4xl">⚠️</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fuel Inventory Status -->
+            <div class="bg-white rounded-lg shadow mb-6">
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-bold text-gray-800">Fuel Inventory Status</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Gasoline -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-semibold text-gray-800">Gasoline</h3>
+                                <span class="text-sm text-gray-500">₱65.50/L</span>
+                            </div>
+                            <div class="mb-2">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>5,450 L</span>
+                                    <span class="text-gray-500">10,000 L</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-green-500 h-3 rounded-full" style="width: 54.5%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Diesel -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-semibold text-gray-800">Diesel</h3>
+                                <span class="text-sm text-gray-500">₱58.75/L</span>
+                            </div>
+                            <div class="mb-2">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>1,850 L</span>
+                                    <span class="text-gray-500">10,000 L</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-yellow-500 h-3 rounded-full" style="width: 18.5%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Premium -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="font-semibold text-gray-800">Premium</h3>
+                                <span class="text-sm text-gray-500">₱72.80/L</span>
+                            </div>
+                            <div class="mb-2">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>3,200 L</span>
+                                    <span class="text-gray-500">8,000 L</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-3">
+                                    <div class="bg-green-500 h-3 rounded-full" style="width: 40%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-bold text-gray-800">Recent Transactions</h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pump</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Fuel Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Liters</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentTransactions" class="divide-y divide-gray-200">
+                            <tr>
+                                <td colspan="5" class="px-6 py-8 text-center text-gray-500">No transactions yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Tab -->
+        <div id="sales" class="tab-content hidden">
+            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow">
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-bold text-gray-800">New Sale Transaction</h2>
+                </div>
+                <div class="p-6">
+                    <form id="saleForm" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Pump Number</label>
+                            <select id="pumpNumber" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <option value="1">Pump 1</option>
+                                <option value="2">Pump 2</option>
+                                <option value="3">Pump 3</option>
+                                <option value="4">Pump 4</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Fuel Type</label>
+                            <select id="fuelType" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <option value="Gasoline" data-price="65.50">Gasoline (₱65.50/L)</option>
+                                <option value="Diesel" data-price="58.75">Diesel (₱58.75/L)</option>
+                                <option value="Premium" data-price="72.80">Premium (₱72.80/L)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Liters</label>
+                            <input type="number" id="liters" step="0.01" min="0.01" placeholder="0.00" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Total Amount</label>
+                            <input type="text" id="totalAmount" readonly class="w-full px-4 py-2 border rounded-lg bg-gray-50 font-bold text-lg">
+                        </div>
+                        <div class="flex gap-4">
+                            <button type="submit" class="flex-1 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                                Complete Sale
+                            </button>
+                            <button type="button" onclick="document.getElementById('saleForm').reset(); document.getElementById('totalAmount').value = '';" class="px-6 py-3 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition">
+                                Clear
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Tab -->
+        <div id="inventory" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-bold text-gray-800">Fuel Inventory Management</h2>
+                </div>
+                <div class="p-6">
+                    <div class="space-y-6">
+                        <!-- Gasoline -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold">Gasoline</h3>
+                                <span class="text-lg font-bold text-blue-600">₱65.50/L</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-600">Current Stock</p>
+                                    <p class="text-2xl font-bold">5,450 L</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Capacity</p>
+                                    <p class="text-2xl font-bold">10,000 L</p>
+                                </div>
+                                <div>
+                                    <button onclick="showRefillModal('Gasoline')" class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700">
+                                        + Add Stock
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Diesel -->
+                        <div class="border rounded-lg p-4 border-yellow-400 bg-yellow-50">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center gap-2">
+                                    <h3 class="text-lg font-semibold">Diesel</h3>
+                                    <span class="bg-yellow-500 text-white text-xs px-2 py-1 rounded">Low Stock</span>
+                                </div>
+                                <span class="text-lg font-bold text-blue-600">₱58.75/L</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-600">Current Stock</p>
+                                    <p class="text-2xl font-bold text-yellow-600">1,850 L</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Capacity</p>
+                                    <p class="text-2xl font-bold">10,000 L</p>
+                                </div>
+                                <div>
+                                    <button onclick="showRefillModal('Diesel')" class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700">
+                                        + Add Stock
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Premium -->
+                        <div class="border rounded-lg p-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold">Premium</h3>
+                                <span class="text-lg font-bold text-blue-600">₱72.80/L</span>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-sm text-gray-600">Current Stock</p>
+                                    <p class="text-2xl font-bold">3,200 L</p>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600">Capacity</p>
+                                    <p class="text-2xl font-bold">8,000 L</p>
+                                </div>
+                                <div>
+                                    <button onclick="showRefillModal('Premium')" class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700">
+                                        + Add Stock
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pumps Tab -->
+        <div id="pumps" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Pump 1</h3>
+                        <span class="bg-green-500 text-white text-sm px-3 py-1 rounded-full pump-active">Active</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-600">Status:</span> <span class="font-semibold">Operational</span></p>
+                        <p><span class="text-gray-600">Current Fuel:</span> <span class="font-semibold">Gasoline</span></p>
+                        <p><span class="text-gray-600">Total Sales Today:</span> <span class="font-semibold">₱12,450</span></p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Pump 2</h3>
+                        <span class="bg-green-500 text-white text-sm px-3 py-1 rounded-full pump-active">Active</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-600">Status:</span> <span class="font-semibold">Operational</span></p>
+                        <p><span class="text-gray-600">Current Fuel:</span> <span class="font-semibold">Diesel</span></p>
+                        <p><span class="text-gray-600">Total Sales Today:</span> <span class="font-semibold">₱8,920</span></p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Pump 3</h3>
+                        <span class="bg-green-500 text-white text-sm px-3 py-1 rounded-full pump-active">Active</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-600">Status:</span> <span class="font-semibold">Operational</span></p>
+                        <p><span class="text-gray-600">Current Fuel:</span> <span class="font-semibold">Premium</span></p>
+                        <p><span class="text-gray-600">Total Sales Today:</span> <span class="font-semibold">₱15,680</span></p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold">Pump 4</h3>
+                        <span class="bg-green-500 text-white text-sm px-3 py-1 rounded-full pump-active">Active</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <p><span class="text-gray-600">Status:</span> <span class="font-semibold">Operational</span></p>
+                        <p><span class="text-gray-600">Current Fuel:</span> <span class="font-semibold">Gasoline</span></p>
+                        <p><span class="text-gray-600">Total Sales Today:</span> <span class="font-semibold">₱9,340</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports" class="tab-content hidden">
+            <div class="bg-white rounded-lg shadow">
+                <div class="p-6 border-b">
+                    <h2 class="text-xl font-bold text-gray-800">Sales Reports</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="border rounded-lg p-4">
+                            <p class="text-sm text-gray-600 mb-1">Total Sales (Today)</p>
+                            <p class="text-3xl font-bold text-green-600">₱<span id="reportTodaySales">0</span></p>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <p class="text-sm text-gray-600 mb-1">Total Liters Sold</p>
+                            <p class="text-3xl font-bold text-blue-600"><span id="reportTotalLiters">0</span> L</p>
+                        </div>
+                        <div class="border rounded-lg p-4">
+                            <p class="text-sm text-gray-600 mb-1">Total Transactions</p>
+                            <p class="text-3xl font-bold text-purple-600"><span id="reportTotalTransactions">0</span></p>
+                        </div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-semibold mb-4">Sales by Fuel Type</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Gasoline</span>
+                                    <span class="font-semibold">₱<span id="gasolineSales">0</span></span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div id="gasolineBar" class="bg-blue-500 h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Diesel</span>
+                                    <span class="font-semibold">₱<span id="dieselSales">0</span></span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div id="dieselBar" class="bg-yellow-500 h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Premium</span>
+                                    <span class="font-semibold">₱<span id="premiumSales">0</span></span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div id="premiumBar" class="bg-green-500 h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize
+        const transactions = [];
+        const salesByFuel = { Gasoline: 0, Diesel: 0, Premium: 0 };
+        
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            year: 'numeric' 
+        });
+
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabName).classList.remove('hidden');
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                btn.classList.add('text-gray-600');
+            });
+            event.target.classList.remove('text-gray-600');
+            event.target.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+        }
+
+        // Calculate total on liters input
+        document.getElementById('liters').addEventListener('input', function() {
+            const liters = parseFloat(this.value) || 0;
+            const price = parseFloat(document.getElementById('fuelType').selectedOptions[0].dataset.price);
+            const total = (liters * price).toFixed(2);
+            document.getElementById('totalAmount').value = '₱' + total;
+        });
+
+        // Handle sale form submission
+        document.getElementById('saleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const pump = document.getElementById('pumpNumber').value;
+            const fuelType = document.getElementById('fuelType').value;
+            const liters = parseFloat(document.getElementById('liters').value);
+            const price = parseFloat(document.getElementById('fuelType').selectedOptions[0].dataset.price);
+            const amount = liters * price;
+            
+            if (!liters || liters <= 0) {
+                alert('Please enter valid liters');
+                return;
+            }
+            
+            // Add transaction
+            const transaction = {
+                time: new Date().toLocaleTimeString(),
+                pump: 'Pump ' + pump,
+                fuelType: fuelType,
+                liters: liters.toFixed(2),
+                amount: amount.toFixed(2)
+            };
+            
+            transactions.unshift(transaction);
+            salesByFuel[fuelType] += amount;
+            
+            // Update dashboard
+            updateDashboard();
+            
+            // Reset form
+            this.reset();
+            document.getElementById('totalAmount').value = '';
+            
+            alert('Sale completed successfully!');
+        });
+
+        function updateDashboard() {
+            const totalSales = Object.values(salesByFuel).reduce((a, b) => a + b, 0);
+            const totalTransactions = transactions.length;
+            
+            document.getElementById('todaySales').textContent = totalSales.toFixed(2);
+            document.getElementById('todayTransactions').textContent = totalTransactions;
+            
+            // Update recent transactions table
+            const tbody = document.getElementById('recentTransactions');
+            tbody.innerHTML = '';
+            
+            transactions.slice(0, 10).forEach(t => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td class="px-6 py-4 text-sm">${t.time}</td>
+                    <td class="px-6 py-4 text-sm">${t.pump}</td>
+                    <td class="px-6 py-4 text-sm">${t.fuelType}</td>
+                    <td class="px-6 py-4 text-sm">${t.liters} L</td>
+                    <td class="px-6 py-4 text-sm font-semibold">₱${t.amount}</td>
+                `;
+            });
+            
+            if (transactions.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="px-6 py-8 text-center text-gray-500">No transactions yet</td></tr>';
+            }
+            
+            // Update reports
+            document.getElementById('reportTodaySales').textContent = totalSales.toFixed(2);
+            document.getElementById('reportTotalLiters').textContent = transactions.reduce((sum, t) => sum + parseFloat(t.liters), 0).toFixed(2);
+            document.getElementById('reportTotalTransactions').textContent = totalTransactions;
+            
+            // Update fuel sales
+            document.getElementById('gasolineSales').textContent = salesByFuel.Gasoline.toFixed(2);
+            document.getElementById('dieselSales').textContent = salesByFuel.Diesel.toFixed(2);
+            document.getElementById('premiumSales').textContent = salesByFuel.Premium.toFixed(2);
+            
+            if (totalSales > 0) {
+                document.getElementById('gasolineBar').style.width = ((salesByFuel.Gasoline / totalSales) * 100) + '%';
+                document.getElementById('dieselBar').style.width = ((salesByFuel.Diesel / totalSales) * 100) + '%';
