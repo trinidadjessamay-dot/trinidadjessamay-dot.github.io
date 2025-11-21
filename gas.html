@@ -20,7 +20,6 @@
     </style>
 </head>
 <body class="bg-gray-100">
-    <!-- Header -->
     <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
@@ -39,7 +38,6 @@
         </div>
     </header>
 
-    <!-- Navigation Tabs -->
     <div class="bg-white shadow-md border-b">
         <div class="container mx-auto px-4">
             <div class="flex gap-2 overflow-x-auto">
@@ -63,9 +61,7 @@
     </div>
 
     <div class="container mx-auto px-4 py-6">
-        <!-- Dashboard Tab -->
         <div id="dashboard" class="tab-content">
-            <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <div class="bg-white rounded-lg shadow p-6">
                     <div class="flex items-center justify-between">
@@ -105,14 +101,12 @@
                 </div>
             </div>
 
-            <!-- Fuel Inventory Status -->
             <div class="bg-white rounded-lg shadow mb-6">
                 <div class="p-6 border-b">
                     <h2 class="text-xl font-bold text-gray-800">Fuel Inventory Status</h2>
                 </div>
                 <div class="p-6">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <!-- Gasoline -->
                         <div class="border rounded-lg p-4">
                             <div class="flex items-center justify-between mb-2">
                                 <h3 class="font-semibold text-gray-800">Gasoline</h3>
@@ -128,7 +122,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Diesel -->
                         <div class="border rounded-lg p-4">
                             <div class="flex items-center justify-between mb-2">
                                 <h3 class="font-semibold text-gray-800">Diesel</h3>
@@ -144,7 +137,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Premium -->
                         <div class="border rounded-lg p-4">
                             <div class="flex items-center justify-between mb-2">
                                 <h3 class="font-semibold text-gray-800">Premium</h3>
@@ -164,7 +156,6 @@
                 </div>
             </div>
 
-            <!-- Recent Transactions -->
             <div class="bg-white rounded-lg shadow">
                 <div class="p-6 border-b">
                     <h2 class="text-xl font-bold text-gray-800">Recent Transactions</h2>
@@ -190,7 +181,6 @@
             </div>
         </div>
 
-        <!-- Sales Tab -->
         <div id="sales" class="tab-content hidden">
             <div class="max-w-2xl mx-auto bg-white rounded-lg shadow">
                 <div class="p-6 border-b">
@@ -236,7 +226,6 @@
             </div>
         </div>
 
-        <!-- Inventory Tab -->
         <div id="inventory" class="tab-content hidden">
             <div class="bg-white rounded-lg shadow">
                 <div class="p-6 border-b">
@@ -244,7 +233,6 @@
                 </div>
                 <div class="p-6">
                     <div class="space-y-6">
-                        <!-- Gasoline -->
                         <div class="border rounded-lg p-4">
                             <div class="flex items-center justify-between mb-4">
                                 <h3 class="text-lg font-semibold">Gasoline</h3>
@@ -266,7 +254,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Diesel -->
                         <div class="border rounded-lg p-4 border-yellow-400 bg-yellow-50">
                             <div class="flex items-center justify-between mb-4">
                                 <div class="flex items-center gap-2">
@@ -291,7 +278,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Premium -->
                         <div class="border rounded-lg p-4">
                             <div class="flex items-center justify-between mb-4">
                                 <h3 class="text-lg font-semibold">Premium</h3>
@@ -318,7 +304,6 @@
             </div>
         </div>
 
-        <!-- Pumps Tab -->
         <div id="pumps" class="tab-content hidden">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-lg shadow p-6">
@@ -368,7 +353,6 @@
             </div>
         </div>
 
-        <!-- Reports Tab -->
         <div id="reports" class="tab-content hidden">
             <div class="bg-white rounded-lg shadow">
                 <div class="p-6 border-b">
@@ -447,16 +431,34 @@
                 btn.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
                 btn.classList.add('text-gray-600');
             });
-            event.target.classList.remove('text-gray-600');
-            event.target.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+            // Use event.currentTarget for the click event handler on the button itself
+            // Since the original code assumes 'event' is available globally, we'll keep the context.
+            // If running in a stricter environment, the function signature should be showTab(tabName, event)
+            if (event && event.currentTarget) {
+                 event.currentTarget.classList.remove('text-gray-600');
+                 event.currentTarget.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+            } else {
+                 // Fallback to select the correct button if event is missing (though less robust)
+                 document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`).classList.remove('text-gray-600');
+                 document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`).classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+            }
         }
 
         // Calculate total on liters input
         document.getElementById('liters').addEventListener('input', function() {
             const liters = parseFloat(this.value) || 0;
-            const price = parseFloat(document.getElementById('fuelType').selectedOptions[0].dataset.price);
+            // Ensure we handle the case where no option is selected or data-price is missing
+            const selectedOption = document.getElementById('fuelType').selectedOptions[0];
+            const price = parseFloat(selectedOption ? selectedOption.dataset.price : 0) || 0;
+            
             const total = (liters * price).toFixed(2);
             document.getElementById('totalAmount').value = '₱' + total;
+        });
+
+        // Update total when fuel type changes
+        document.getElementById('fuelType').addEventListener('change', function() {
+            // Trigger the calculation function when the fuel type changes
+            document.getElementById('liters').dispatchEvent(new Event('input'));
         });
 
         // Handle sale form submission
@@ -527,11 +529,26 @@
             document.getElementById('reportTotalLiters').textContent = transactions.reduce((sum, t) => sum + parseFloat(t.liters), 0).toFixed(2);
             document.getElementById('reportTotalTransactions').textContent = totalTransactions;
             
-            // Update fuel sales
+            // Update fuel sales text
             document.getElementById('gasolineSales').textContent = salesByFuel.Gasoline.toFixed(2);
             document.getElementById('dieselSales').textContent = salesByFuel.Diesel.toFixed(2);
             document.getElementById('premiumSales').textContent = salesByFuel.Premium.toFixed(2);
             
+            // Update fuel sales bars (FIXED)
             if (totalSales > 0) {
                 document.getElementById('gasolineBar').style.width = ((salesByFuel.Gasoline / totalSales) * 100) + '%';
                 document.getElementById('dieselBar').style.width = ((salesByFuel.Diesel / totalSales) * 100) + '%';
+                document.getElementById('premiumBar').style.width = ((salesByFuel.Premium / totalSales) * 100) + '%';
+            }
+        }
+
+        // Placeholder for showRefillModal function (referenced in Inventory tab)
+        function showRefillModal(fuel) {
+            alert(`Opening refill modal for ${fuel}. (Refill logic not implemented yet)`);
+        }
+        
+        // Initial dashboard update (to set initial state)
+        updateDashboard(); 
+    </script>
+</body>
+</html>
